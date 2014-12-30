@@ -1,6 +1,5 @@
 require 'action_controller/railtie'
 require 'active_support/core_ext/hash/slice'
-require 'rspec'
 require 'subdomain-fu'
 
 Rails.env = 'test'

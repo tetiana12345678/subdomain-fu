@@ -50,28 +50,28 @@ describe "SubdomainFu URL Writing" do
 
     it "should should not force the full url with _path" do
       SubdomainFu.config.override_only_path = false
-      needs_subdomain_path(:subdomain => "awesome").should ==  "/needs_subdomain"
+      needs_subdomain_path(:subdomain => "awesome", only_path: true).should ==  "/needs_subdomain"
     end
 
     it "should not force the full url if it's the same as the current subdomain" do
       default_url_options[:host] = "awesome.example.com"
-      needs_subdomain_path(:subdomain => "awesome").should == "/needs_subdomain"
+      needs_subdomain_path(:subdomain => "awesome", only_path: true).should == "/needs_subdomain"
     end
 
     it "should not force the full url even if it's a different subdomain" do
       SubdomainFu.config.override_only_path = false
       default_url_options[:host] = "awesome.example.com"
-      needs_subdomain_path(:subdomain => "crazy").should == "/needs_subdomain"
+      needs_subdomain_path(:subdomain => "crazy", only_path: true).should == "/needs_subdomain"
     end
 
     it "should not force the full url if the current subdomain is nil and so is the target" do
-      needs_subdomain_path(:subdomain => nil).should == "/needs_subdomain"
+      needs_subdomain_path(:subdomain => nil, only_path: true).should == "/needs_subdomain"
     end
 
     it "should not force the full url if no :subdomain option is given" do
-      needs_subdomain_path.should == "/needs_subdomain"
+      needs_subdomain_path(only_path: true).should == "/needs_subdomain"
       default_url_options[:host] = "awesome.example.com"
-      needs_subdomain_path.should == "/needs_subdomain"
+      needs_subdomain_path(only_path: true).should == "/needs_subdomain"
     end
 
     describe "With override_only_path set to true" do
@@ -85,7 +85,7 @@ describe "SubdomainFu URL Writing" do
 
       it "should not force the full url if it's the same as the current subdomain" do
         default_url_options[:host] = "awesome.example.com"
-        needs_subdomain_path(:subdomain => "awesome").should == "/needs_subdomain"
+        needs_subdomain_path(:subdomain => "awesome", only_path: true).should == "/needs_subdomain"
       end
 
       it "should force the full url if it's a different subdomain" do
@@ -94,13 +94,13 @@ describe "SubdomainFu URL Writing" do
       end
 
       it "should not force the full url if the current subdomain is nil and so is the target" do
-        needs_subdomain_path(:subdomain => nil).should == "/needs_subdomain"
+        needs_subdomain_path(:subdomain => nil, only_path: true).should == "/needs_subdomain"
       end
 
       it "should not force the full url if no :subdomain option is given" do
-        needs_subdomain_path.should == "/needs_subdomain"
+        needs_subdomain_path(only_path: true).should == "/needs_subdomain"
         default_url_options[:host] = "awesome.example.com"
-        needs_subdomain_path.should == "/needs_subdomain"
+        needs_subdomain_path(only_path: true).should == "/needs_subdomain"
       end
     end
   end
@@ -125,7 +125,7 @@ describe "SubdomainFu URL Writing" do
 
     it "should work when passed in a paramable object and no subdomain to a _path" do
       default_url_options[:host] = "awesome.example.com"
-      foo_path(Paramed.new("something")).should == "/foos/something"
+      foo_path(Paramed.new("something"), only_path: true).should == "/foos/something"
     end
 
     it "should work when passed in a paramable object and no subdomain to a _url" do

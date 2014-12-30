@@ -8,20 +8,10 @@ plugin_spec_dir = File.dirname(__FILE__)
 
 $LOAD_PATH.unshift(plugin_spec_dir)
 
-RSpec.configure do |config|
-
-end
-
-# require all files inside spec_helpers
-#Dir[File.join(plugin_spec_dir, "spec_helpers/*.rb")].each { |file| require file }
-#ActiveRecord::Base.logger = Logger.new(plugin_spec_dir + "/debug.log")
-
-
 module SubdomainFu
   class TestApplication < Rails::Application
   end
 end
-
 
 SubdomainFu::TestApplication.routes.draw do
   get '/needs_subdomain' => "fu#awesome", :as => 'needs_subdomain'

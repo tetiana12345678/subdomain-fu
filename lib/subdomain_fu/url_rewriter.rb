@@ -23,7 +23,7 @@ module ActionDispatch
         else
           options.delete(:subdomain)
         end
-        url_for_without_subdomains(options)
+        url_for_without_subdomains(options, *args)
       end
 
       alias_method_chain :url_for, :subdomains

@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   else
   end
 
-  s.add_runtime_dependency 'rails', '~> 4.2.0'
+  s.add_runtime_dependency 'rails', '4.1.9'
 
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rspec-core', '~> 2.14.0'
